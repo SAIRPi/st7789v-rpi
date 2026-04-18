@@ -83,7 +83,7 @@ Default SPI speed:
 
     40000000 (40 MHz)
 
-If you see instability or corruption, try lowering SPI speed.
+If you see instability or image rendering issues/distortion, try lowering SPI speed.
 
 ## Run at Boot
 
