@@ -6,6 +6,12 @@ Display images like this one on the TFT display:
 
 ![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
 
+## Why this repository exists
+
+Many ST7789V display modules are sold with incomplete, generic, or Arduino-only example code that is not directly usable on Raspberry Pi systems.
+
+This repository documents a confirmed working Raspberry Pi 5 setup for the ST7789V 240x320 TFT GMT020-02 display module, including wiring, dependencies, and example scripts.
+
 ## Overview
 
 This repository contains Python scripts for a 2-inch 240x320 ST7789V TFT module.
