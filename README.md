@@ -2,6 +2,10 @@
 
 Python scripts to drive a 240x320 ST7789V TFT display on Raspberry Pi over SPI on Slackware Linux operating systems.
 
+Display images like this one on the TFT display:
+
+![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
+
 ## Overview
 
 This repository contains Python scripts for a 2-inch 240x320 ST7789V TFT module.
@@ -87,9 +91,7 @@ If you see instability or image rendering issues/distortion, try lowering SPI sp
 
 ## Run at Boot
 
-The image used for testing the `st7789v_display.py` script:
-
-![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
+The image used for testing the `st7789v_display.py` script: https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg
 
 **NB:** use your own PATHs and images, of course.
 
