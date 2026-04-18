@@ -1,6 +1,6 @@
 # 2 inch TFT Module 240×320 ST7789V GMT020-02 Display
 
-Python scripts to drive a 240x320 ST7789V TFT display on Raspberry Pi over SPI.
+Python scripts to drive a 240x320 ST7789V TFT display on Raspberry Pi over SPI on Slackware Linux operating systems.
 
 ## Overview
 
@@ -17,7 +17,7 @@ Target display module:
 
 - 2 inch TFT module 240x320 ST7789V GMT020-02 (example: https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/)
 
-These scripts may also work on other non-touch ST7789V-based TFT modules, but that is not guaranteed.
+These scripts may also work on other non-touch ST7789V-based TFT modules, but no guarantees! Try them and see for yourselves.
 
 ## TFT Module Wiring
 
@@ -47,11 +47,13 @@ Prepare a 240x320 image and run:
 
     python3 st7789v_display.py my_image.jpg
 
-### Run Matrix digital rain
+### Run Matrix digital rain generator script
 
     python3 matrix_digital_rain.py
 
 ## Script Notes
+
+**NB:** Complete notes are in the script headers.
 
 ### st7789v_display.py
 
@@ -85,14 +87,14 @@ If you see instability or corruption, try lowering SPI speed.
 
 ## Run at Boot
 
-NB: use your own PATHs and images, of course.
+**NB:** use your own PATHs and images, of course.
 
-Example with rc.local:
+Example entry in rc.local:
 
     /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
     /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
-Example with cron:
+Example entry in crontab:
 
     @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
