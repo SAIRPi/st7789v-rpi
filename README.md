@@ -53,7 +53,7 @@ Prepare a 240x320 image and run:
 
 ## Script Notes
 
-**NB:** Complete notes are in the script headers.
+**NB:** Complete notes are in the script headers. The scripts are also quite well commented in the code to make it easy for editing and personal adjustments.
 
 ### st7789v_display.py
 
@@ -98,6 +98,28 @@ Example entry in crontab:
 
     @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
+
+## Notes On ST7789V display behaviour
+
+### Static image uploads
+
+When using `st7789v_display.py`, the image is sent to the ST7789V display framebuffer as a one-time transfer.
+
+After the image has been uploaded:
+
+- it remains visible on the screen
+- it is not continuously refreshed by the script
+- it will stay displayed until another image is sent to the display, the display contents are changed by another program, or power is removed from the module
+
+In other words, once the image has been written to the display, it will remain - even though the `st7789v_display.py` script exits cleanly.
+
+This is not the same with `matrix_digital_rain.py` - when the script is exited (i.e. CTRL+C) the screen will freeze but still display the last frame in the buffer. The display will not continue to show the falling Matrix digital rain illusion because the script is no longer driving that process.
+
+### Important note
+
+The display will continue displaying the last written image even after the host system is rebooted or poweroff/shutdown command is used. For as long as the TFT module itself is  receiving power the image will be displayed on screen.
+
+Only when all power to the display module is cut will the image disappear from the screen.
 
 ## License
 
