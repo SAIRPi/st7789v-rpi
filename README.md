@@ -87,6 +87,8 @@ If you see instability or image rendering issues/distortion, try lowering SPI sp
 
 ## Run at Boot
 
+![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
+
 **NB:** use your own PATHs and images, of course.
 
 Example entry in /etc/rc.d/rc.local:
