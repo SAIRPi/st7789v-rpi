@@ -91,12 +91,12 @@ If you see instability or image rendering issues/distortion, try lowering SPI sp
 
 Example entry in /etc/rc.d/rc.local:
 
-    /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
+    /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
     /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
 Example entry in crontab:
 
-    @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
+    @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
 ## Notes On ST7789V display behaviour
