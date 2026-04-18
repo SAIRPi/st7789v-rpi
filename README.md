@@ -58,6 +58,10 @@ Prepare a 240x320 image and run:
 
     python3 st7789v_display.py my_image.jpg
 
+### Display Raspberry Pi 5 system status on-the-fly
+
+    python3 rpi_system_stats.py
+
 ### Run Matrix digital rain generator script
 
     python3 matrix_digital_rain.py
