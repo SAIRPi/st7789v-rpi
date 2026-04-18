@@ -8,9 +8,9 @@ Display images like this one on the TFT display:
 
 ## Why this repository exists
 
-Many ST7789V display modules are sold with incomplete, generic, or Arduino-only example code that is not directly usable on Raspberry Pi systems.
+Many ST7789V display modules are sold with incomplete, generic, or Arduino-only code examples that aren't directly usable on Raspberry Pi computers.
 
-This repository documents a confirmed working Raspberry Pi 5 setup for the ST7789V 240x320 TFT GMT020-02 display module, including wiring, dependencies, and example scripts.
+This repository documents a confirmed working Raspberry Pi 5 setup for the TFT 240x320 ST7789V GMT020-02 display module, including wiring, python3 library dependencies, and example scripts.
 
 ## Overview
 
