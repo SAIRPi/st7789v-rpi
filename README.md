@@ -18,7 +18,8 @@ This repository contains Python scripts for a 2-inch 240x320 ST7789V TFT module.
 
 Included scripts:
 
-- `st7789v_display.py` — display a static image on the TFT
+- `st7789v_display.py` — display a static image on the TFT screen
+- `rpi_system_stats.py` - simple system status output with configurable refresh rate and colours
 - `matrix_digital_rain.py` — Matrix-style digital rain animation with optional custom text and timestamp
 
 ## Hardware
@@ -101,14 +102,16 @@ The image used for testing the `st7789v_display.py` script: https://raw.githubus
 
 **NB:** use your own PATHs and images, of course.
 
-Example entry in /etc/rc.d/rc.local:
+Example entries in /etc/rc.d/rc.local:
 
     /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
+	/usr/bin/python3 /root/tft/rpi_system_stats.py & 
     /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
-Example entry in crontab:
+Example entries in crontab:
 
     @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
+	@reboot /usr/bin/python3 /root/tft/rpi_system_stats.py &
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
 ## Notes On ST7789V display behaviour
@@ -127,7 +130,17 @@ In other words, once the image has been written to the display, it will remain -
 
 This is not the same with `matrix_digital_rain.py` - when the script is exited (i.e. CTRL+C) the screen will freeze but still display the last frame in the buffer. The display will not continue to show the falling Matrix digital rain illusion because the script is no longer driving that process.
 
-### Important note
+### System Status python script
+
+The `rpi_system_stats.py` implementation is specifically optimised for Raspberry Pi 5 architecture running on arm-based Slackware Linux operating systems.
+
+- Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge for GPIO. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries like RPi.GPIO.
+
+- The code includes specific ST7789V controller initialisation offsets for the GMT020-02 IPS module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
+
+- Default font paths are configured for traditional Slackware /usr/share/fonts/TTF/ locations.
+
+### Important note on the ST7789V display's power status
 
 The display will continue displaying the last written image even after the host system is rebooted or poweroff/shutdown command is used. For as long as the TFT module itself is  receiving power the image will be displayed on screen.
 
