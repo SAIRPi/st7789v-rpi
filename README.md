@@ -87,6 +87,8 @@ If you see instability or image rendering issues/distortion, try lowering SPI sp
 
 ## Run at Boot
 
+The image used for testing the `st7789v_display.py` script:
+
 ![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
 
 **NB:** use your own PATHs and images, of course.
