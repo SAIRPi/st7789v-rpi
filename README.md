@@ -89,7 +89,7 @@ If you see instability or corruption, try lowering SPI speed.
 
 **NB:** use your own PATHs and images, of course.
 
-Example entry in rc.local:
+Example entry in /etc/rc.d/rc.local:
 
     /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/my_image.jpg &
     /usr/bin/python3 /root/tft/matrix_digital_rain.py &
