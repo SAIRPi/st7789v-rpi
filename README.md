@@ -1,4 +1,4 @@
-# st7789v
+# 2 inch TFT Module 240×320 ST7789V GMT020-02 Display
 
 Python scripts to drive a 240x320 ST7789V TFT display on Raspberry Pi over SPI.
 
