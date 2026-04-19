@@ -237,7 +237,7 @@ def get_stats():
     # CPU temp
     try:
         with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
-            temp = f"{int(float(f.read())/1000)} C"
+            temp = f"{int(float(f.read())/1000)}\u00b0 C"
     except: temp = "n/a"
 
     # RAM usage (smart MB/GB shift for Pi 5 16GB models)
