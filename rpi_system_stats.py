@@ -39,6 +39,10 @@
 #
 #    /usr/bin/python3 /root/stats/rpi_system_stats.py & 
 #
+# You can enter this into crontab to run on reboot:
+#
+#    @reboot /usr/bin/python3 /root/stats/rpi_system_stats.py & 
+#
 # NB: Use your own PATHs, of course.
 #
 ###
