@@ -7,6 +7,9 @@
 # v2.1 uses a two-stage search to find the correct GPIO interface, 
 # regardless of how the Linux system numbers them.
 #
+# v2.1 uses a two-stage search to find the correct GPIO interface, 
+# regardless of how the Linux system numbers them.
+#
 ###
 #
 # TFT MODULE CONFIG:
