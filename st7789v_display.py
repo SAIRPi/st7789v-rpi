@@ -214,7 +214,7 @@ def main():
         fb = image_to_rgb565_bytes(img)
         set_window(spi, 0, 0, WIDTH - 1, HEIGHT - 1)
         data(spi, fb)
-        print(f"Success: Display updated using chip {CHIP_ID}")
+        print(f"Success: TFT display updated using /dev/gpiochip{CHIP_ID}")
 
     except Exception as e:
         print(f"Runtime Error: {e}")
