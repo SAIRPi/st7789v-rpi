@@ -180,4 +180,4 @@ Released under the MIT License.
 
 ## Credits
 
-SAIRPi Project
+[SAIRPi Project](https://sairpi.penthux.net)
