@@ -6,6 +6,9 @@
 #
 # Exaga - 2026-04-17 - SAIRPi Project - https://sairpi.penthux.net
 #
+# v2.1 uses a two-stage search to find the correct GPIO interface, 
+# regardless of how the Linux system numbers them.
+#
 ###
 #
 # TFT MODULE CONFIG:
@@ -98,7 +101,7 @@ RST = 24
 # SPI config - Bus 0, Device 0
 SPI_BUS = 0
 SPI_DEV = 0
-SPI_SPEED = 40000000 # 40 MHz SPI speed (lower this if you have issues)
+SPI_SPEED = 20000000 # 40 MHz SPI speed (lower this if you have issues)
 REFRESH = 0.5 # How often the display refreshes (in seconds)
 
 # Configurable RGB Colours (R, G, B)
@@ -195,8 +198,7 @@ def init_display(spi):
 def image_to_rgb565_bytes(img):
     img = img.convert("RGB")
     out = bytearray()
-    for r, g, b in img.getdata():  # NB: will be deprecated in pillow 14!
-  # for r, g, b in img.get_flattened_data(): # use this instead on latest pillow version 
+    for r, g, b in img.getdata():
         value = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3)
         out.append((value >> 8) & 0xFF)
         out.append(value & 0xFF)
