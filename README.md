@@ -77,6 +77,15 @@ Prepare a 240x320 image and run:
 - converts it to RGB565
 - sends it to the display over SPI
 
+### rpi_system_stats.py
+
+- displays running system statistics
+- stats include; hostname, system IP address, uptime, load, SoC temperature, memory and disk (storage) in-use/total 
+- also includes current rolling timestamp (YYYY-MM-DD hh:mm:ss format)
+- configurable SPI speed (default 40 MHz)
+- configurable setting for how often the display refreshes (minimum 0.1 seconds)
+- configurable background, text, and line seperator colours
+
 ### matrix_digital_rain.py
 
 - renders an animated digital rain effect
