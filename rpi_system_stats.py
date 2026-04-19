@@ -33,11 +33,13 @@
 #
 # Run this script to display real-time system metrics:
 #
-#    python3 /root/stats/st7789v_monitor.py
+#    python3 /root/stats/rpi_system_stats.py
 #
 # You can enter this into /etc/rc.d/rc.local to run at boot time:
 #
-#    /usr/bin/python3 /root/stats/st7789v_monitor.py & 
+#    /usr/bin/python3 /root/stats/rpi_system_stats.py & 
+#
+# NB: Use your own PATHs, of course.
 #
 ###
 #
@@ -91,7 +93,7 @@ RST = 24
 SPI_BUS = 0
 SPI_DEV = 0
 SPI_SPEED = 40000000 # 40 MHz SPI speed (lower this if you have issues)
-REFRESH = 0.5 # how often the display refreshes (in seconds)
+REFRESH = 0.5 # How often the display refreshes (in seconds)
 
 # Configurable RGB Colours (R, G, B)
 BACKGROUND = (0, 0, 0)           # Display background colour
