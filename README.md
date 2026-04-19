@@ -68,19 +68,19 @@ Prepare a 240x320 pixel image and run:
 
     python3 st7789v_display.py my_image.jpg
 	
-![RPi System Stats Display](http://sairpi.penthux.net/sairpi/img/jaffaworks/maia_slackpunk_display.jpg)
+![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_slackpunk_display.jpg)
 
 ### Display Raspberry Pi 5 system status on-the-fly
 
     python3 rpi_system_stats.py
 	
-![RPi System Stats Display](http://sairpi.penthux.net/sairpi/img/jaffaworks/maia_system_stats_display.jpg)
+![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_system_stats_display.jpg)
 
 ### Run Matrix -style digital rain generator script
 
     python3 matrix_digital_rain.py
 	
-![RPi System Stats Display](http://sairpi.penthux.net/sairpi/img/jaffaworks/maia_matrix_digital_rain.jpg)
+![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_matrix_digital_rain.jpg)
 
 ## Script Notes
 
