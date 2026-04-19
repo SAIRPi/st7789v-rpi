@@ -1,6 +1,6 @@
-# 2 inch TFT Module 240×320 ST7789V GMT020-02 Display
+# 2 inch TFT Module 240×320 ST7789V GMT020-02-7P Display
 
-Python scripts to drive a 240x320 ST7789V GMT020-02 TFT module display screen on Raspberry Pi over SPI on Slackware Linux operating systems.
+Python scripts to drive a 240x320 ST7789V GMT020-02-7P TFT module display screen on Raspberry Pi over SPI on Slackware Linux operating systems.
 
 Display images on the TFT display screen like this one:
 
@@ -10,13 +10,13 @@ Display images on the TFT display screen like this one:
 
 Many ST7789V TFT modules come with vague, incomplete, generic, or Arduino-only instructions and/or code examples that aren't directly usable on Raspberry Pi computers.
 
-What this repository offers is a working solution for the 2 inch TFT Module 240×320 ST7789V GMT020-02 display running Slackware Linux on Raspberry Pi computers, including wiring instructions, python3 library dependencies, and example scripts.
+What this repository offers is a working solution for the 2 inch TFT Module 240×320 ST7789V GMT020-02-7P display running Slackware Linux on Raspberry Pi computers, including wiring instructions, python3 library dependencies, and example scripts.
 
 All the python3 scripts in this repository will run on other Linux operating systems but may require some code adjustments.
 
 ## Overview
 
-This repository contains Python scripts for a 2-inch 240x320 ST7789V GMT020-02 TFT module.
+This repository contains Python scripts for a 2-inch 240x320 ST7789V GMT020-02-7P TFT module.
 
 Included scripts:
 
@@ -34,7 +34,9 @@ Test image:
 
 Target TFT module:
 
-- 2 inch TFT module 240x320 ST7789V GMT020-02 (example: https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/)
+- 2 inch TFT module 240x320 ST7789V GMT020-02-7P (example: https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/)
+- This is the 7-pin version of the GMT020-02 TFT module without a separate BL (backlight) pin connector. The version with the separate BL pin is the GMT020-02-8P.
+
 
 These scripts may also work on other non-touch ST7789V-based TFT modules, but no guarantees! Try them and see for yourselves.
 
@@ -162,7 +164,7 @@ The `rpi_system_stats.py` implementation is specifically optimised for Raspberry
 
 - Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge (I/O controller) to manage GPIO via a PCI Express link, and is not directly mapped to memory as in earlier versions. This means older direct register-access libraries won't work. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries such as RPi.GPIO.
 
-- The code includes specific ST7789V controller initialisation offsets for the GMT020-02 TFT module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
+- The code includes specific ST7789V controller initialisation offsets for the GMT020-02-7P TFT module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
 
 - Default font paths are configured for traditional Slackware /usr/share/fonts/TTF/ locations.
 
