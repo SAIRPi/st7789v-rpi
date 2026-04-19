@@ -4,13 +4,13 @@
 #
 # System Monitor Edition for Raspberry Pi 5 (Slackware Linux)
 #
-# Exaga - 2026-04-17 - SAIRPi Project - https://sairpi.penthux.net
+# Exaga - 2026-04-18 - SAIRPi Project - https://sairpi.penthux.net
+#
+###
 #
 # TFT MODULE CONFIG:
 # This script is intended for 2 inch TFT module 240x320 ST7789V GMT020-02:
 # https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/
-#
-# In may work for other TFT modules, but no guarantees!
 #
 # Optimised for Pi 5: Uses 'lgpio' to handle the RP1 southbridge chip.
 #
@@ -228,38 +228,48 @@ def get_stats():
             sec = int(float(f.read().split()[0]))
             up = f"{sec // 3600}h {(sec % 3600) // 60}m"
     except: up = "n/a"
-    # CPU Temp
+
+    # CPU temp
     try:
         with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
-            temp = f"{float(f.read())/1000:.1f} C"
+            temp = f"{int(float(f.read())/1000)} C"
     except: temp = "n/a"
-    # RAM Usage
+
+    # RAM usage (smart MB/GB shift for Pi 5 16GB models)
     try:
         with open("/proc/meminfo", "r") as f:
             m = {l.split(':')[0]: int(l.split()[1]) for l in f.readlines()}
-        total = m['MemTotal']
-        avail = m.get('MemAvailable', m.get('MemFree'))
-        used = (total - avail) // 1024
-        mem = f"{used}/{total//1024}MB ({int((total-avail)*100/total)}%)"
+        total_kb = m['MemTotal']
+        avail_kb = m.get('MemAvailable', m.get('MemFree'))
+        used_kb = total_kb - avail_kb
+        
+        used_mb = used_kb // 1024
+        total_gb = total_kb // (1024 * 1024)
+        perc = int(used_kb * 100 / total_kb)
+
+        # Switch to GB if over 1024MB used to save screen space
+        used_display = f"{used_mb // 1024}GB" if used_mb >= 1024 else f"{used_mb}MB"
+        
+        mem = f"{used_display}/{total_gb}GB ({perc}%)"
     except: mem = "n/a"
-    # Disk Usage
+
+    # Disk usage
     try:
         st = os.statvfs("/")
         d_total = st.f_blocks * st.f_frsize
         d_free = st.f_bavail * st.f_frsize
         d_used = d_total - d_free
         d_perc = int(d_used * 100 / d_total)
-        disk = f"{d_used/(1024**3):.1f}/{d_total/(1024**3):.1f}GB ({d_perc}%)"
+        disk = f"{int(d_used/(1024**3))}/{int(d_total/(1024**3))}GB ({d_perc}%)"
     except: disk = "n/a"
 
-    # Output system stat values
     return [
         ("HOST", socket.gethostname()),
         ("IP", get_ip()),
         ("UP", up),
         ("LOAD", f"{os.getloadavg()[0]:.2f}"),
         ("TEMP", temp),
-        ("MEM", mem),
+        ("RAM", mem),
         ("DISK", disk),
     ]
 
@@ -321,4 +331,3 @@ if __name__ == "__main__":
     main()
 
 # EOF<*>
-  
