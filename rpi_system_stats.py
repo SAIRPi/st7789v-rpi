@@ -195,7 +195,8 @@ def init_display(spi):
 def image_to_rgb565_bytes(img):
     img = img.convert("RGB")
     out = bytearray()
-    for r, g, b in img.getdata():
+    for r, g, b in img.getdata():  # NB: will be deprecated in pillow 14!
+  # for r, g, b in img.get_flattened_data(): # use this instead on latest pillow version 
         value = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3)
         out.append((value >> 8) & 0xFF)
         out.append(value & 0xFF)
