@@ -4,7 +4,7 @@ Python scripts to drive a 240x320 ST7789V GMT020-02-7P TFT module display screen
 
 Display images on the TFT display screen like this one:
 
-![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
+![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg "Slackpunk test Image")
 
 ## The purpose of this repository
 
@@ -68,19 +68,19 @@ Prepare a 240x320 pixel image and run:
 
     python3 st7789v_display.py my_image.jpg
 	
-![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_slackpunk_display.jpg)
+![Display static Slackpunk test image](https://sairpi.penthux.net/img/jaffaworks/maia_slackpunk_display.jpg "Display static Slackpunk test image")
 
 ### Display Raspberry Pi 5 system status on-the-fly
 
     python3 rpi_system_stats.py
 	
-![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_system_stats_display.jpg)
+![RPi 5 System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_system_stats_display.jpg "RPi 5 System Stats Display")
 
 ### Run Matrix -style digital rain generator script
 
     python3 matrix_digital_rain.py
 	
-![RPi System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_matrix_digital_rain.jpg)
+![Matrix-style Digital Rain illusion](https://sairpi.penthux.net/img/jaffaworks/maia_matrix_digital_rain.jpg "Matrix-style Digital Rain illusion")
 
 ## Script Notes
 
