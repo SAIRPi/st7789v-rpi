@@ -4,13 +4,13 @@
 #
 # System Monitor Edition for Raspberry Pi 5 (Slackware Linux)
 #
-# Exaga - 2026-04-18 - SAIRPi Project - https://sairpi.penthux.net
-#
-###
+# Exaga - 2026-04-17 - SAIRPi Project - https://sairpi.penthux.net
 #
 # TFT MODULE CONFIG:
 # This script is intended for 2 inch TFT module 240x320 ST7789V GMT020-02:
 # https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/
+#
+# In may work for other TFT modules, but no guarantees!
 #
 # Optimised for Pi 5: Uses 'lgpio' to handle the RP1 southbridge chip.
 #
