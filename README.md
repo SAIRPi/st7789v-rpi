@@ -1,30 +1,36 @@
 # 2 inch TFT Module 240×320 ST7789V GMT020-02 Display
 
-Python scripts to drive a 240x320 ST7789V TFT display on Raspberry Pi over SPI on Slackware Linux operating systems.
+Python scripts to drive a 240x320 ST7789V GMT020-02 TFT module display screen on Raspberry Pi over SPI on Slackware Linux operating systems.
 
-Display images like this one on the TFT display:
+Display images on the TFT display screen like this one:
 
 ![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg)
 
-## Why this repository exists
+## The purpose of this repository
 
-Many ST7789V display modules are sold with incomplete, generic, or Arduino-only code examples that aren't directly usable on Raspberry Pi computers.
+Many ST7789V TFT modules come with vague, incomplete, generic, or Arduino-only instructions and/or code examples that aren't directly usable on Raspberry Pi computers.
 
-This repository documents a confirmed working Raspberry Pi 5 setup for the TFT 240x320 ST7789V GMT020-02 display module, including wiring, python3 library dependencies, and example scripts.
+What this repository offers is a working solution for the 2 inch TFT Module 240×320 ST7789V GMT020-02 display running Slackware Linux on Raspberry Pi computers, including wiring instructions, python3 library dependencies, and example scripts.
+
+All the python3 scripts in this repository will run on other Linux operating systems but may require some code adjustments.
 
 ## Overview
 
-This repository contains Python scripts for a 2-inch 240x320 ST7789V TFT module.
+This repository contains Python scripts for a 2-inch 240x320 ST7789V GMT020-02 TFT module.
 
 Included scripts:
 
-- `st7789v_display.py` — display a static image on the TFT screen
-- `rpi_system_stats.py` - simple system status output with configurable refresh rate and colours
-- `matrix_digital_rain.py` — Matrix-style digital rain animation with optional custom text and timestamp
+- `st7789v_display.py` — display static images on the TFT screen
+- `rpi_system_stats.py` - simple system status output, with user-configurable refresh rate and colours
+- `matrix_digital_rain.py` — Matrix-style digital rain animation, with optional custom text and timestamp
+
+Test image:
+
+- `slackpunk.jpg` - a 240x320 pixel JPG image used for testing the `st7789v_display.py` script
 
 ## Hardware
 
-Target display module:
+Target TFT module:
 
 - 2 inch TFT module 240x320 ST7789V GMT020-02 (example: https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/)
 
@@ -34,19 +40,19 @@ These scripts may also work on other non-touch ST7789V-based TFT modules, but no
 
 ST7789V module wiring on the Raspberry Pi 40-pin GPIO header:
 
-| TFT Pin | Raspberry Pi Pin | GPIO |
-|--------|------------------|------|
-| CS     | Pin 24           | GPIO8  |
-| DC     | Pin 22           | GPIO25 |
-| RST    | Pin 18           | GPIO24 |
-| SDA    | Pin 19           | GPIO10 |
-| SCL    | Pin 23           | GPIO11 |
-| VCC    | Pin 17           | 3.3V   |
-| GND    | Pin 20           | Ground |
+| TFT Pin | Raspberry Pi Pin | GPIO   |
+|---------|------------------|--------|
+| CS      | Pin 24           | GPIO8  |
+| DC      | Pin 22           | GPIO25 |
+| RST     | Pin 18           | GPIO24 |
+| SDA     | Pin 19           | GPIO10 |
+| SCL     | Pin 23           | GPIO11 |
+| VCC     | Pin 17           | 3.3V   |
+| GND     | Pin 20           | Ground |
 
 ## Requirements
 
-Install dependencies:
+Install python3 library dependencies:
 
     python3 -m pip install --upgrade pillow spidev numpy lgpio rpi-lgpio
 
@@ -54,7 +60,7 @@ Install dependencies:
 
 ### Display a static image
 
-Prepare a 240x320 image and run:
+Prepare a 240x320 pixel image and run:
 
     python3 st7789v_display.py my_image.jpg
 
@@ -62,40 +68,41 @@ Prepare a 240x320 image and run:
 
     python3 rpi_system_stats.py
 
-### Run Matrix digital rain generator script
+### Run Matrix -style digital rain generator script
 
     python3 matrix_digital_rain.py
 
 ## Script Notes
 
-**NB:** Complete notes are in the script headers. The scripts are also quite well commented in the code to make it easy for editing and personal adjustments.
+**NB:** Complete notes are in the script headers. The scripts are also well commented in the code to make it easy for editing and personal adjustments.
 
 ### st7789v_display.py
 
 - loads an image from the command line
 - resizes it to 240x320
 - converts it to RGB565
-- sends it to the display over SPI
+- sends the image to the TFT module display buffer over SPI
 
 ### rpi_system_stats.py
 
 - displays running system statistics
-- stats include; hostname, system IP address, uptime, load, SoC temperature, memory and disk (storage) in-use/total 
-- also includes current rolling timestamp (YYYY-MM-DD hh:mm:ss format)
-- configurable SPI speed (default 40 MHz)
-- configurable setting for how often the display refreshes (minimum 0.1 seconds)
-- configurable background, text, and line seperator colours
+- stats include; hostname, system IP, uptime, load, SoC thermals, RAM and disk used/total percentages
+- includes current rolling timestamp (YYYY-MM-DD hh:mm:ss format)
+- includes configurable SPI speed
+- includes configurable setting for how often the display refreshes (minimum 0.1 seconds)
+- includes configurable background, text, and line separator colours
+- includes configurable font setting
 
 ### matrix_digital_rain.py
 
-- renders an animated digital rain effect
-- supports optional top text
+- renders an animated Matrix-style digital rain effect
+- supports optional text at top of screen (max 24 chars per line)
 - supports optional timestamp display
 - includes configurable colours, intensity, and FPS
 
 ## Configuration
 
-Both scripts are configured for:
+All scripts are configured for:
 
 - resolution: 240x320
 - SPI bus: 0
@@ -107,7 +114,7 @@ Default SPI speed:
 
     40000000 (40 MHz)
 
-If you see instability or image rendering issues/distortion, try lowering SPI speed.
+**NB:** If you see instability or image rendering issues/distortion, try lowering SPI speed.
 
 ## Run at Boot
 
@@ -118,20 +125,24 @@ The image used for testing the `st7789v_display.py` script: https://raw.githubus
 Example entries in /etc/rc.d/rc.local:
 
     /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
+	
 	/usr/bin/python3 /root/tft/rpi_system_stats.py & 
+	
     /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
 Example entries in crontab:
 
     @reboot /usr/bin/python3 /root/tft/st7789v_display.py /root/tft/slackpunk.jpg &
+	
 	@reboot /usr/bin/python3 /root/tft/rpi_system_stats.py &
+	
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
 ## Notes On ST7789V display behaviour
 
 ### Static image uploads
 
-When using `st7789v_display.py`, the image is sent to the ST7789V display framebuffer as a one-time transfer.
+When using `st7789v_display.py`, the image is sent to the ST7789V display framebuffer as a one-time data transfer.
 
 After the image has been uploaded:
 
@@ -141,15 +152,15 @@ After the image has been uploaded:
 
 In other words, once the image has been written to the display, it will remain - even though the `st7789v_display.py` script exits cleanly.
 
-This is not the same with `matrix_digital_rain.py` - when the script is exited (i.e. CTRL+C) the screen will freeze but still display the last frame in the buffer. The display will not continue to show the falling Matrix digital rain illusion because the script is no longer driving that process.
+This is not the same with `rpi_system_stats.py` and `matrix_digital_rain.py` - when the script is exited (i.e. CTRL+C) the screen will freeze but still display the last frame in the buffer. The display will not continue to show updated content because the script is no longer driving that process. Both the `rpi_system_stats.py` and `matrix_digital_rain.py` scripts can be run as background processes, allowing you to keep your terminal free while ensuring the process continues uninterrupted.
 
-### System Status python script
+### Important notes on rpi_system_stats.py script
 
 The `rpi_system_stats.py` implementation is specifically optimised for Raspberry Pi 5 architecture running on arm-based Slackware Linux operating systems.
 
-- Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge for GPIO. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries like RPi.GPIO.
+- Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge (I/O controller) to manage GPIO via a PCI Express link, and is not directly mapped to memory as in earlier versions. This means older direct register-access libraries won't work. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries such as RPi.GPIO.
 
-- The code includes specific ST7789V controller initialisation offsets for the GMT020-02 IPS module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
+- The code includes specific ST7789V controller initialisation offsets for the GMT020-02 TFT module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
 
 - Default font paths are configured for traditional Slackware /usr/share/fonts/TTF/ locations.
 
