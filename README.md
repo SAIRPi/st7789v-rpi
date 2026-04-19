@@ -24,6 +24,8 @@ Included scripts:
 - `rpi_system_stats.py` - simple system status output, with user-configurable refresh rate and colours
 - `matrix_digital_rain.py` — Matrix-style digital rain animation, with optional custom text and timestamp
 
+**NB:** These scripts are now v2.1 which uses a two-stage search to find the correct GPIO interface, regardless of how the Linux system numbers them.
+
 Test image:
 
 - `slackpunk.jpg` - a 240x320 pixel JPG image used for testing the `st7789v_display.py` script
