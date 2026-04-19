@@ -67,14 +67,20 @@ Install python3 library dependencies:
 Prepare a 240x320 pixel image and run:
 
     python3 st7789v_display.py my_image.jpg
+	
+	![SlackPunk](http://kron.penthux.lan/sairpi/img/jaffaworks/maia_slackpunk_display.jpg)
 
 ### Display Raspberry Pi 5 system status on-the-fly
 
     python3 rpi_system_stats.py
+	
+	![RPi System Stats Display](http://kron.penthux.lan/sairpi/img/jaffaworks/maia_system_stats_display.jpg)
 
 ### Run Matrix -style digital rain generator script
 
     python3 matrix_digital_rain.py
+	
+	![Matrix-style Digital Rain](http://kron.penthux.lan/sairpi/img/jaffaworks/maia_matrix_digital_rain.jpg)
 
 ## Script Notes
 
