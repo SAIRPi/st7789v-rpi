@@ -42,7 +42,7 @@ These scripts may also work on other non-touch ST7789V-based TFT modules, but no
 
 ## TFT Module Wiring
 
-ST7789V module wiring on the Raspberry Pi 40-pin GPIO header:
+ST7789V GMT020-02-7P TFT module wiring on the Raspberry Pi 40-pin GPIO header:
 
 | TFT Pin | Raspberry Pi Pin | GPIO   |
 |---------|------------------|--------|
@@ -68,7 +68,7 @@ Prepare a 240x320 pixel image and run:
 
     python3 st7789v_display.py my_image.jpg
 	
-![Display static Slackpunk test image](https://sairpi.penthux.net/img/jaffaworks/maia_slackpunk_display.jpg "Display static Slackpunk test image")
+![Display static SlackPunk test image](https://sairpi.penthux.net/img/jaffaworks/maia_slackpunk_display.jpg "Display static SlackPunk test image")
 
 ### Display Raspberry Pi 5 system status on-the-fly
 
@@ -80,7 +80,7 @@ Prepare a 240x320 pixel image and run:
 
     python3 matrix_digital_rain.py
 	
-![Matrix-style Digital Rain illusion](https://sairpi.penthux.net/img/jaffaworks/maia_matrix_digital_rain.jpg "Matrix-style Digital Rain illusion")
+![Matrix-style Digital Rain](https://sairpi.penthux.net/img/jaffaworks/maia_matrix_digital_rain.jpg "Matrix-style Digital Rain")
 
 ## Script Notes
 
@@ -148,7 +148,18 @@ Example entries in crontab:
 	
     @reboot /usr/bin/python3 /root/tft/matrix_digital_rain.py &
 
-## Notes On ST7789V display behaviour
+
+## Notes On ST7789V GMT020-02-7P display behaviour
+
+### The `rpi_system_stats.py` script
+
+The `rpi_system_stats.py` implementation is specifically optimised for Raspberry Pi 5 architecture running on arm-based Slackware Linux operating systems.
+
+- Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge (I/O controller) to manage GPIO via a PCI Express link, and is not directly mapped to memory as in earlier versions. This means older direct register-access libraries won't work. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries such as RPi.GPIO.
+
+- The code includes specific ST7789V controller initialisation offsets for the GMT020-02-7P TFT module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
+
+- Default font paths are configured for traditional Slackware /usr/share/fonts/TTF/ locations.
 
 ### Static image uploads
 
@@ -163,16 +174,6 @@ After the image has been uploaded:
 In other words, once the image has been written to the display, it will remain - even though the `st7789v_display.py` script exits cleanly.
 
 This is not the same with `rpi_system_stats.py` and `matrix_digital_rain.py` - when the script is exited (i.e. CTRL+C) the screen will freeze but still display the last frame in the buffer. The display will not continue to show updated content because the script is no longer driving that process. Both the `rpi_system_stats.py` and `matrix_digital_rain.py` scripts can be run as background processes, allowing you to keep your terminal free while ensuring the process continues uninterrupted.
-
-### Important notes on rpi_system_stats.py script
-
-The `rpi_system_stats.py` implementation is specifically optimised for Raspberry Pi 5 architecture running on arm-based Slackware Linux operating systems.
-
-- Unlike previous models, the Raspberry Pi 5 uses the RP1 southbridge (I/O controller) to manage GPIO via a PCI Express link, and is not directly mapped to memory as in earlier versions. This means older direct register-access libraries won't work. The `rpi_system_stats.py` script uses the lgpio library to dynamically detect the correct hardware chip (typically gpiochip15), preventing the "Bad GPIO" errors common with older libraries such as RPi.GPIO.
-
-- The code includes specific ST7789V controller initialisation offsets for the GMT020-02-7P TFT module to prevent image drifting or scrolling issues caused by internal memory byte misalignment.
-
-- Default font paths are configured for traditional Slackware /usr/share/fonts/TTF/ locations.
 
 ### Important note on the ST7789V display's power status
 
