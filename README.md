@@ -16,7 +16,7 @@ You should have git installed on your system. The just clone it:
 
 To clone the repository into a directory of your choice:
 
-`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p /path/to/your_drectory_name`
+`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p /path/to/your_directory_name`
 
 ## The purpose of this repository
 
