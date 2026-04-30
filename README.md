@@ -8,6 +8,16 @@ Display images on the TFT display screen like this one:
 
 ![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg "Slackpunk test Image")
 
+## How to download this repository:
+
+You should have git installed on your system. The just clone it:
+
+`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p`
+
+To clone the repository into a directory of your choice:
+
+`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p /path/to/your_drectory_name`
+
 ## The purpose of this repository
 
 Many ST7789V TFT modules come with vague, incomplete, generic, or Arduino-only instructions and/or code examples that aren't directly usable on Raspberry Pi computers.
