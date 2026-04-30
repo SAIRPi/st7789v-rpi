@@ -10,7 +10,7 @@ Display images on the TFT display screen like this one:
 
 ## How to download this repository:
 
-You should have git installed on your system. The just clone it:
+You should have git installed on your system. Then simply clone it:
 
 `git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p`
 
