@@ -2,6 +2,8 @@
 
 Python scripts to drive a 240x320 ST7789V GMT020-02-7P TFT module display screen on Raspberry Pi over SPI on Slackware Linux operating systems.
 
+All the python3 scripts in this repository will run on other Linux operating systems but may require some code adjustments.
+
 Display images on the TFT display screen like this one:
 
 ![Slackpunk test Image](https://raw.githubusercontent.com/SAIRPi/st7789v-rpi/main/slackpunk.jpg "Slackpunk test Image")
@@ -11,8 +13,6 @@ Display images on the TFT display screen like this one:
 Many ST7789V TFT modules come with vague, incomplete, generic, or Arduino-only instructions and/or code examples that aren't directly usable on Raspberry Pi computers.
 
 What this repository offers is a working solution for the 2 inch TFT Module 240×320 ST7789V GMT020-02-7P display running Slackware Linux on Raspberry Pi computers, including wiring instructions, python3 library dependencies, and example scripts.
-
-All the python3 scripts in this repository will run on other Linux operating systems but may require some code adjustments.
 
 ## Overview
 
