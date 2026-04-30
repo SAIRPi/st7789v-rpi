@@ -12,11 +12,14 @@ Display images on the TFT display screen like this one:
 
 You should have git installed on your system. Then simply clone it:
 
-`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p`
-
+```bash
+git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p
+```
 To clone the repository into a directory of your choice:
 
-`git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p /path/to/your_directory_name`
+```bash
+git clone https://github.com/SAIRPi/st7789v-gmt020-02-7p /path/to/your_directory_name
+```
 
 ## The purpose of this repository
 
