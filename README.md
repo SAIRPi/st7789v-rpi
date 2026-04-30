@@ -188,3 +188,5 @@ Released under the MIT License.
 ## Credits
 
 [SAIRPi Project](https://sairpi.penthux.net)
+
+Featured Raspberry Pi cases are hand-made in the UK by [Ideas Universe](https://www.ebay.co.uk/usr/car_36724)
