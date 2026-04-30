@@ -76,7 +76,7 @@ Prepare a 240x320 pixel image and run:
 	
 ![RPi 5 System Stats Display](https://sairpi.penthux.net/img/jaffaworks/maia_system_stats_display.jpg "RPi 5 System Stats Display?v=2")
 
-### Run Matrix -style digital rain generator script
+### Run Matrix-style digital rain generator script
 
     python3 matrix_digital_rain.py
 	
