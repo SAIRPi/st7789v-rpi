@@ -7,9 +7,6 @@
 # v2.1 uses a two-stage search to find the correct GPIO interface, 
 # regardless of how the Linux system numbers them.
 #
-# v2.1 uses a two-stage search to find the correct GPIO interface, 
-# regardless of how the Linux system numbers them.
-#
 ###
 #
 # TFT MODULE CONFIG:
@@ -83,32 +80,27 @@ HEIGHT = 320
 DC = 25
 RST = 24
 
-# SPI configuration
+# SPI config - Bus 0, Device 0, SPI Speed
 SPI_BUS = 0
 SPI_DEV = 0
-SPI_SPEED = 20000000 
+SPI_SPEED = 20000000  # 40 MHz SPI speed (lower this if you have issues)
 
 def get_gpio_handle():
-    """
-    Finds and opens the correct GPIO chip handle by checking available /dev nodes.
-    Essential for Slackware/Pi 5 where chip indices are inconsistent.
-    """
-    # 1. Try to find by label in /sys/class/gpio first (if populated)
+    # 1. Find RP1 chip by label
     sys_path = '/sys/class/gpio'
     if os.path.exists(sys_path):
         for chip in os.listdir(sys_path):
-            if chip.startswith('gpiochip'):
+            if chip.startswith('chip'):
                 try:
                     with open(f"{sys_path}/{chip}/label", "r") as f:
                         if "rp1" in f.read().lower():
-                            idx = int(chip.replace('gpiochip', ''))
+                            idx = int(chip.replace('chip', ''))
                             return lgpio.gpiochip_open(idx), idx
                 except:
                     continue
 
-    # 2. Brute force check /dev/gpiochip nodes (15 down to 0)
-    # Most Pi 5 environments map the RP1 between 0-15 or at 500+
-    test_range = list(range(16)) + [569] 
+    # 2. Fallback: brute force /dev/gpiochip nodes
+    test_range = list(range(16)) + [569]
     for idx in reversed(test_range):
         dev_node = f"/dev/gpiochip{idx}"
         if os.path.exists(dev_node):
@@ -131,11 +123,23 @@ def gpio_out(pin, value):
     lgpio.gpio_write(h, pin, value)
 
 # Claim Pins
-try:
-    lgpio.gpio_claim_output(h, DC)
-    lgpio.gpio_claim_output(h, RST)
-except Exception as e:
-    print(f"CRITICAL ERROR: Pins {DC}/{RST} busy on chip {CHIP_ID}. {e}")
+claimed = False
+for attempt in range(10):
+    try:
+        lgpio.gpio_claim_output(h, DC)
+        lgpio.gpio_claim_output(h, RST)
+        claimed = True
+        break
+    except Exception as e:
+        last_error = e
+        try: lgpio.gpio_free(h, DC)
+        except: pass
+        try: lgpio.gpio_free(h, RST)
+        except: pass
+        if attempt < 9:
+            time.sleep(0.2)
+if not claimed:
+    print(f"CRITICAL ERROR: Pins {DC}/{RST} busy on chip {CHIP_ID}. {last_error}")
     lgpio.gpiochip_close(h)
     sys.exit(1)
 
