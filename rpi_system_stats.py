@@ -98,7 +98,7 @@ HEIGHT = 320
 DC = 25
 RST = 24
 
-# SPI config - Bus 0, Device 0
+# SPI config - Bus 0, Device 0, SPI Speed
 SPI_BUS = 0
 SPI_DEV = 0
 SPI_SPEED = 20000000 # 40 MHz SPI speed (lower this if you have issues)
@@ -129,10 +129,27 @@ def find_gpiochip_numbers():
 
 # Pi 5 specific for RP1 chip
 def open_working_gpiochip():
+    # Step 1: find RP1 chip by label
+    sys_path = '/sys/class/gpio'
+    if os.path.exists(sys_path):
+        for chip in os.listdir(sys_path):
+            if chip.startswith('chip'):
+                try:
+                    with open(f"{sys_path}/{chip}/label") as f:
+                        if "rp1" in f.read().lower():
+                            idx = int(chip.replace('chip', ''))
+                            handle = lgpio.gpiochip_open(idx)
+                            lgpio.gpio_claim_output(handle, DC)
+                            lgpio.gpio_claim_output(handle, RST)
+                            return handle, idx
+                except Exception:
+                    pass
+
+    # Step 2: fallback - try all chips
     chips = find_gpiochip_numbers()
     if not chips:
         raise RuntimeError("No /dev/gpiochip* devices found")
-    for chip in reversed(chips):
+    for chip in chips:
         handle = None
         try:
             handle = lgpio.gpiochip_open(chip)
