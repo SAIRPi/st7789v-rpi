@@ -52,7 +52,7 @@ Target TFT module:
 ![2 inch TFT Module 240x320 ST7789V GMT020-02-7P](https://sairpi.penthux.net/img/jaffaworks/2-inch-TFT-Module-240x320-ST7789V-GMT020-02-7P.png "2 inch TFT Module 240x320 ST7789V GMT020-02-7P")
 
 - 2 inch TFT module 240x320 ST7789V GMT020-02-7P (example: https://goldenmorninglcd.com/tft-display-module/2-inch-240x320-st7789v-gmt020-02/)
-- This is the 7-pin version of the GMT020-02 TFT module without a separate BL (backlight) pin connector. The version with the separate BL pin is the GMT020-02-8P.
+- This is the 7-pin version of the GMT020-02 TFT module without a separate BL (backlight) pin connector. The version with the separate BL pin is the [GMT020-02-8P](https://github.com/SAIRPi/st7789v-gmt020-02-8p).
 
 
 These scripts may also work on other non-touch ST7789V-based TFT modules, but no guarantees! Try them and see for yourselves.
